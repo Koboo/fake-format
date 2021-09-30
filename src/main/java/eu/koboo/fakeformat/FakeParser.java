@@ -43,7 +43,7 @@ public class FakeParser {
 
       if (key != null) {
         // Check if key exists
-        if (fakeObject.has(key)) {
+        if (fakeObject.hasKey(key)) {
           // key already exists
           throw fakeCursor.syntaxError("Duplicate key \"" + key + "\"");
         }

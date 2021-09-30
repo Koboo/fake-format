@@ -1,6 +1,8 @@
 package eu.koboo.fakeformat;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,11 +20,16 @@ public class FakeObject extends FakeElement {
   }
 
   public FakeObject set(String key, Object object) {
+    if (key == null) {
+      throw new NullPointerException("The key is null!");
+    }
+    if (object == null) {
+      throw new NullPointerException("The object with the key \"" + key + "\" is null");
+    }
     FakeElement fakeElement = null;
-    if(object instanceof FakeElement) {
+    if (object instanceof FakeElement) {
       fakeElement = (FakeElement) object;
-    } else
-    if(FakeElement.isPrimitive(object)) {
+    } else if (FakeElement.isPrimitive(object)) {
       fakeElement = new FakeElement(object);
     }
     this.fakeElementMap.put(key, fakeElement);
@@ -38,8 +45,21 @@ public class FakeObject extends FakeElement {
     return element != null ? element : defaultValue;
   }
 
-  public boolean has(String key) {
+  public boolean hasKey(String key) {
     return this.fakeElementMap.containsKey(key);
+  }
+
+  public boolean hasKeys(String... keys) {
+    return hasKeys(Arrays.asList(keys));
+  }
+
+  public boolean hasKeys(List<String> keyList) {
+    for (String key : keyList) {
+      if (!this.fakeElementMap.containsKey(key)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   public Set<String> getKeys() {
@@ -51,15 +71,15 @@ public class FakeObject extends FakeElement {
     StringBuilder builder = new StringBuilder();
     builder.append("{");
     int size = this.fakeElementMap.size();
-    for(Map.Entry<String, FakeElement> entry : this.fakeElementMap.entrySet()) {
+    for (Map.Entry<String, FakeElement> entry : this.fakeElementMap.entrySet()) {
       size -= 1;
       String key = entry.getKey();
       String objectString = entry.getValue().toString();
-      if(objectString == null) {
+      if (objectString == null) {
         continue;
       }
       builder.append("\"").append(key).append("\"").append(":").append(objectString);
-      if(size > 0) {
+      if (size > 0) {
         builder.append(",");
       }
     }
