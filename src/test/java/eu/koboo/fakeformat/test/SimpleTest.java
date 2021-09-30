@@ -2,6 +2,7 @@ package eu.koboo.fakeformat.test;
 
 import eu.koboo.fakeformat.FakeArray;
 import eu.koboo.fakeformat.FakeObject;
+import eu.koboo.fakeformat.FakeParser;
 import java.util.UUID;
 
 public class SimpleTest {
@@ -26,7 +27,15 @@ public class SimpleTest {
 
     fakeObject.set("test_array", fakeArray);
 
-    System.out.println(fakeObject);
+    String content = fakeObject.toString();
+
+    System.out.println(content);
+
+    FakeObject object2 = FakeParser.parse(content);
+
+    for(String key : object2.getKeys()) {
+      System.out.println("key: " + object2.get(key).toString());
+    }
   }
 
 }
