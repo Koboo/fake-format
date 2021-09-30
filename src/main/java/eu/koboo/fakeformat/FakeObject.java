@@ -2,6 +2,7 @@ package eu.koboo.fakeformat;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings("unchecked")
 public class FakeObject extends FakeElement {
@@ -37,10 +38,18 @@ public class FakeObject extends FakeElement {
     return element != null ? element : defaultValue;
   }
 
+  public boolean has(String key) {
+    return this.fakeElementMap.containsKey(key);
+  }
+
+  public Set<String> getKeys() {
+    return this.fakeElementMap.keySet();
+  }
+
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append(FakeFormat.getInstance().getOpenBracket());
+    builder.append("{");
     int size = this.fakeElementMap.size();
     for(Map.Entry<String, FakeElement> entry : this.fakeElementMap.entrySet()) {
       size -= 1;
@@ -49,12 +58,12 @@ public class FakeObject extends FakeElement {
       if(objectString == null) {
         continue;
       }
-      builder.append("\"").append(key).append("\"").append(FakeFormat.getInstance().getKeyValueSeparator()).append(objectString);
+      builder.append("\"").append(key).append("\"").append(":").append(objectString);
       if(size > 0) {
-        builder.append(FakeFormat.getInstance().getEntrySeparator());
+        builder.append(",");
       }
     }
-    builder.append(FakeFormat.getInstance().getCloseBracket());
+    builder.append("}");
     return builder.toString();
   }
 }
