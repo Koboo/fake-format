@@ -65,16 +65,16 @@ public class FakeArray extends FakeElement implements Iterable<FakeElement> {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append(FakeFormat.getInstance().getOpenArray());
+    builder.append("[");
     int size = this.fakeElementList.size();
     for (FakeElement element : this.fakeElementList) {
       size -= 1;
       builder.append(element.toString());
       if (size > 0) {
-        builder.append(FakeFormat.getInstance().getEntrySeparator());
+        builder.append(",");
       }
     }
-    builder.append(FakeFormat.getInstance().getCloseArray());
+    builder.append("]");
     return builder.toString();
   }
 }
