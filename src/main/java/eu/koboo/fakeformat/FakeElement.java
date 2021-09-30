@@ -4,6 +4,8 @@ import java.util.UUID;
 
 public class FakeElement {
 
+  public static final FakeElement NULL = new FakeElement();
+
   private final Object object;
 
   protected FakeElement() {
