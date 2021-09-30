@@ -1,10 +1,21 @@
 package eu.koboo.fakeformat;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class FakeElement {
 
   public static final FakeElement NULL = new FakeElement();
+
+  private static final Set<Class<?>> WRAPPER_TYPES = new HashSet(Arrays.asList(
+      Boolean.class, Character.class, Byte.class, Short.class, Integer.class, Long.class,
+      Float.class, Double.class));
+
+  public static boolean isPrimitive(Object object) {
+    return object != null && (object.getClass().isPrimitive() || WRAPPER_TYPES.contains(object.getClass()));
+  }
 
   private final Object object;
 
@@ -16,56 +27,56 @@ public class FakeElement {
     this.object = object;
   }
 
-  private boolean isObjectNull() {
-    return object == null;
+  private boolean hasValue() {
+    return object != null;
   }
 
   public double getAsDouble() {
-    return !isObjectNull() ? (double) object : 0;
+    return hasValue() ? (double) object : 0;
   }
 
   public int getAsInt() {
-    return !isObjectNull() ? (int) object : 0;
+    return hasValue() ? (int) object : 0;
   }
 
   public float getAsFloat() {
-    return !isObjectNull() ? (float) object : 0;
+    return hasValue() ? (float) object : 0;
   }
 
   public short getAsShort() {
-    return !isObjectNull() ? (short) object : 0;
+    return hasValue() ? (short) object : 0;
   }
 
   public long getAsLong() {
-    return !isObjectNull() ? (long) object : 0;
+    return hasValue() ? (long) object : 0;
   }
 
   public boolean getAsBoolean() {
-    return !isObjectNull() && (boolean) object;
+    return hasValue() && (boolean) object;
   }
 
   public byte getAsByte() {
-    return !isObjectNull() ? (byte) object : 0;
+    return hasValue() ? (byte) object : 0;
   }
 
   public char getAsChar() {
-    return !isObjectNull() ? (char) object : 0;
+    return hasValue() ? (char) object : 0;
   }
 
   public String getAsString() {
-    return !isObjectNull() ? (String) object : null;
+    return hasValue() ? (String) object : null;
   }
 
   public UUID getAsUUID() {
-    return !isObjectNull() ? (UUID) object : null;
+    return hasValue() ? (UUID) object : null;
   }
 
   @Override
   public String toString() {
-    if(isObjectNull()) {
+    if (!hasValue()) {
       return null;
     }
-    if(object instanceof String || object instanceof UUID) {
+    if (object instanceof String || object instanceof UUID) {
       return "\"" + object + "\"";
     }
     return String.valueOf(object);
