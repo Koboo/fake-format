@@ -6,6 +6,14 @@ The file size of the complete framework is smaller than the file size of json-si
 
 ``12 kB`` (fake-format) < ``23kB`` (json-simple)
 
+## Why FakeFormat and not another library?
+
+* Very simple calls
+* Small file-size (only ``12kB``)
+* No dependencies
+* Free-to-use
+* RFC 8259 compatible
+
 ## Special thanks
 
 A special thanks goes to [stleary](https://github.com/stleary), who wrote the parsing logic for his own [project](https://github.com/stleary/JSON-java).
