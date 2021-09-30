@@ -16,6 +16,7 @@ public class SimpleTest {
     FakeObject innerObject = new FakeObject();
     innerObject.set("inner", 1);
     innerObject.set("second_inner", UUID.randomUUID());
+    innerObject.set("null_check", null);
 
     fakeObject.set("inner_object", innerObject);
 
