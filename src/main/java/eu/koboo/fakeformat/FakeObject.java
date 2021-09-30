@@ -22,7 +22,7 @@ public class FakeObject extends FakeElement {
     if(object instanceof FakeElement) {
       fakeElement = (FakeElement) object;
     } else
-    if(Primitive.isPrimitive(object)) {
+    if(FakeElement.isPrimitive(object)) {
       fakeElement = new FakeElement(object);
     }
     this.fakeElementMap.put(key, fakeElement);

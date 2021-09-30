@@ -41,7 +41,7 @@ public class FakeArray extends FakeElement implements Iterable<FakeElement> {
     FakeElement element = null;
     if(object instanceof FakeElement) {
       element = (FakeElement) object;
-    } else if(Primitive.isPrimitive(object)) {
+    } else if(FakeElement.isPrimitive(object)) {
       element = new FakeElement(object);
     }
     if(element == null) {
