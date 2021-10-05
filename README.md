@@ -10,6 +10,24 @@ This is a very small, simple-to-understand and lightweight framework, which is b
 * Free-to-use
 * RFC 8259 compatible
 
+## Dependency
+
+A dd the dependency to ``build.gradle`` 
+
+```groovy
+repositories {
+  // Artifact repository  
+  maven {
+    url 'https://repo.koboo.eu/releases'
+  }
+}
+
+dependencies {
+  // Dependency declaration  
+  implementation 'eu.koboo:fake-format:1.0.3'
+}
+```
+
 ## Special thanks
 
 A special thanks goes to [stleary](https://github.com/stleary), who wrote the parsing logic for his own [project](https://github.com/stleary/JSON-java).
