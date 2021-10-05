@@ -1,10 +1,6 @@
 # FakeFormat
 
-This is a very small and simple framework which is based on the json format.
-
-The file size of the complete framework is smaller than the file size of json-simple.
-
-``12 kB`` (fake-format) < ``23kB`` (json-simple)
+This is a very small, simple-to-understand and lightweight framework, which is based on the json format.
 
 ## Why FakeFormat and not another library?
 
@@ -53,8 +49,24 @@ public class SomeClass {
     // Get the whole object as JSON-String
     String objectAsJsonString = fakeObject.toString();
 
-    // Parse any JSON-String back to a FakeObject
-    FakeObject parsedFromString = FakeParser.parse(content);
+    // Parse any JSON-String back to any FakeObject
+    fakeObject = FakeParser.parse(content);
+    
+    // Get any value with get(String key)
+    String value = fakeObject.get("key").getAsString();
+    String thisCanBeAnyPrimitive = fakeObject.get("this_is_a_string").getAsString();
+    
+    // You can also get FakeObjects
+    FakeObject setInnerObject = fakeObject.get("inner_object").getAsFakeObject();
+    
+    String innerValue = setInnerObject.get("key").getAsString();
+    
+    // Or get directly FakeArrays
+    FakeArray setArray = fakeObject.get("key_of_array").getAsFakeArray();
+    
+    for(FakeElement element : setArray) {
+      System.out.println(element.toString());
+    }
   }
 
 }
