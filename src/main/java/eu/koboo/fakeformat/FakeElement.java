@@ -75,6 +75,10 @@ public class FakeElement {
     return hasValue() ? (FakeObject) object : null;
   }
 
+  public FakeArray getAsFakeArray() {
+    return hasValue() ? (FakeArray) object : null;
+  }
+
   @Override
   public String toString() {
     if (!hasValue()) {
