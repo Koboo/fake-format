@@ -9,7 +9,7 @@ public class FakeElement {
 
   public static final FakeElement NULL = new FakeElement();
 
-  private static final Set<Class<?>> WRAPPER_TYPES = new HashSet(Arrays.asList(
+  private static final Set<Class<?>> WRAPPER_TYPES = new HashSet<>(Arrays.asList(
       Boolean.class, Character.class, Byte.class, Short.class, Integer.class, Long.class,
       Float.class, Double.class));
 
@@ -69,6 +69,10 @@ public class FakeElement {
 
   public UUID getAsUUID() {
     return hasValue() ? (UUID) object : null;
+  }
+
+  public FakeObject getAsFakeObject() {
+    return hasValue() ? (FakeObject) object : null;
   }
 
   @Override
