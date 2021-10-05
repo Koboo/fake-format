@@ -30,7 +30,7 @@ dependencies {
 
 ## Special thanks
 
-A special thanks goes to [stleary](https://github.com/stleary), who wrote the parsing logic for his own [project](https://github.com/stleary/JSON-java).
+A special thanks goes to [stleary](https://github.com/stleary), who coded the parsing logic.
 
 ## Usage
 
