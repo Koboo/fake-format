@@ -12,7 +12,7 @@ This is a very small, simple-to-understand and lightweight framework, which is b
 
 ## Dependency
 
-A dd the dependency to ``build.gradle`` 
+Add the dependency to ``build.gradle`` 
 
 ```groovy
 repositories {
